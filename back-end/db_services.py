@@ -1,62 +1,42 @@
-import mysql.connector
+from db_connector import *
+from classes import *
+from json_utility import *
 
-def get_db_connection():
-  mydb = mysql.connector.connect(
-  host="localhost",
-  user="root",
-  password="10082003",
-  database="pustakkosh"
-  )
- 
-  return mydb
-
-def get_all_books(user_id=None, donation_status=None):
-    # prepare sql query
-
-    # if not None both
+def get_all_books(user_id = None, donation_status = None) -> list:
+    db_connection = get_db_connection()
+    cur = db_connection.cursor()
     
-    db_connec=get_db_connection()
-    cur = db_connec.cursor()
-    if user_id==None and donation_status==None:
-     query = "SELECT book_id,book_name,author,genre,donation_status,request_count FROM book "
-    
-     cur.execute(query) # list of tuples
-     rows=cur.fetchall()
-    elif user_id==None:
-     query = "SELECT book_id,book_name,author,genre,donation_status,request_count FROM book WHERE donation_status=%s"
-     cur.execute(query,(donation_status,))
-     rows=cur.fetchall()
-    elif donation_status==None:
-     query= "SELECT book_id,book_name,author,genre,donation_status,request_count FROM book WHERE user_id=%s"
-     
-     cur.execute(query,(user_id,))
-     rows=cur.fetchall()
+    if user_id == None and donation_status == None:
+        query = "SELECT book_id,book_name,author,genre,donation_status,request_count FROM book "
+        cur.execute(query) # list of tuples
+        
+    elif user_id == None:
+        query = "SELECT book_id,book_name,author,genre,donation_status,request_count FROM book WHERE donation_status=%s"
+        cur.execute(query, (donation_status, ))
+        
+    elif donation_status == None:
+        query= "SELECT book_id,book_name,author,genre,donation_status,request_count FROM book WHERE user_id=%s"
+        cur.execute(query, (user_id, ))
+        
     else:
-     query = "SELECT book_id,book_name,author,genre,donation_status,request_count FROM book WHERE user_id=%s and donation_status=%s"
-     cur.execute(query,(user_id,donation_status))
-     rows=cur.fetchall()
-    
-    
-    # convert to list of dict
-    result = []
-    for row in rows:
-        
-        entry = {
-            'book_id': row[0],
-            'book_name': row[1],
-            'author':row[2],
-            'genre':row[3],
-            'donation_status':row[4],
-            'request_count':row[5]
-             
+        query = "SELECT book_id,book_name,author,genre,donation_status,request_count FROM book WHERE user_id=%s and donation_status=%s"
+        cur.execute(query, (user_id, donation_status))
 
-            #...
-        }
-        
-        result.append(entry)
-    print(result)
-    return result
-get_all_books(2)
+    rows = cur.fetchall()
+    display_result = []
+    for row in rows:
+        book_object = Book(book_id = row[0],
+            book_name = row[1],
+            author = row[2],
+            genre = row[3],
+            donation_status = row[4],
+            request_count = row[5],
+            user_id = user_id,
+            description = "")
+        display_result.append(get_json(book_object))
+    print(display_result)
+    return display_result
+
 def update_request_for_book(book_id, request_user_id):
     # prepare update query for book table
     db_connec=get_db_connection()
