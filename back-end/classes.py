@@ -1,3 +1,4 @@
+from json_utility import * #imports get_json(object) function
 class User:
     def __init__(self, user_id, user_name, user_email, user_pass, location) -> None:
         self.user_id = user_id
@@ -26,6 +27,7 @@ class User:
         
     def print_location(self) -> None:
         print(self.location)
+        
         
 class Request:
     def __init__(self, request_id, request_user_id, book_id, queue_order, request_status = 'PENDING') -> None:
