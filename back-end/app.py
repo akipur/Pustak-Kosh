@@ -1,16 +1,8 @@
 from flask import Flask,render_template,request,redirect,url_for,session,jsonify
 import db
 from flask_mysqldb import MySQL
-#from flask_bcrypt import Bcrypt
 
 app = Flask(__name__)
-#app.config['MYSQL_HOST']='localhost'
-#app.config['MYSQL_USER']='root'
-#app.config['MYSQL_PASSWORD']='Sonam11'
-#app.config['MYSQL_DB']='pustakkosh'
-#mysql=MySQL(app)
-#bcrypt=Bcrypt(app)
-
 
 
 @app.route('/get_all_books',methods={'GET'})
