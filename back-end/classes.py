@@ -1,4 +1,3 @@
-from json_utility import * #imports get_json(object) function
 class User:
     def __init__(self, user_id, user_name, user_email, user_pass, location) -> None:
         self.user_id = user_id
@@ -28,7 +27,9 @@ class User:
     def print_location(self) -> None:
         print(self.location)
         
-        
+    def get_json(self):
+        return self.__dict__
+               
 class Request:
     def __init__(self, request_id, request_user_id, book_id, queue_order, request_status = 'PENDING') -> None:
         self.request_id = request_id
@@ -54,6 +55,9 @@ class Request:
     
     def print_request_status(self) -> None:
         print(self.request_status)
+        
+    def get_json(self):
+        return self.__dict__
     
 class Book:
     def __init__(self, book_id, book_name, author, genre, donation_status, request_count, user_id, description) -> None:
@@ -106,5 +110,8 @@ class Book:
         return self.description
     
     def print_description(self) -> None:
-        print(self.description)    
+        print(self.description) 
+    
+    def get_json(self):
+        return self.__dict__   
     
