@@ -33,7 +33,7 @@ def get_all_books(user_id = None, donation_status = None) -> list:
             request_count = row[5],
             user_id = user_id,
             description = "")
-        display_result.append(get_json(book_object))
+        display_result.append(book_object.get_json())
     print(display_result)
     return display_result
 
