@@ -1,9 +1,14 @@
+"""
+Defines and implements various Flask API's that perform tasks required by the service.
+The API's make use of db_service functions to interact with the database.
+"""
+
 from flask import *
 import db_services 
 
 app = Flask(__name__)
 
-@app.route('/sign_up_user',methods={'POST'})
+@app.route('/sign_up_user', methods={'POST'})
 def sign_up_user():
 
     """
@@ -18,7 +23,8 @@ def sign_up_user():
     
     result =db_services.sign_up_user(user_name=user_name,user_pass=user_pass,location=location,email_id=email_id)
     return jsonify(result)
-@app.route('/login',methods={'POST'})
+
+@app.route('/login', methods={'POST'})
 def login():
 
     """
@@ -32,7 +38,8 @@ def login():
     
     result =db_services.login(user_name=user_name,user_pass=user_pass)
     return jsonify(result)
-@app.route('/get_all_books',methods={'GET'})
+
+@app.route('/get_all_books', methods={'GET'})
 def get_all_books():
     """ 
     to fetch all the books filtered by certain parameters
@@ -42,7 +49,7 @@ def get_all_books():
     result = db_services.get_all_books(user_id = user_id, donation_status = donation_status)
     return jsonify(result)
 
-@app.route('/add_new_book',methods={'POST'})
+@app.route('/add_new_book', methods={'POST'})
 def add_new_book():
 
     """
@@ -59,7 +66,7 @@ def add_new_book():
                           genre = genre, description = description, donation_status = donation_status)
     return jsonify(result)
 
-@app.route('/update_request_for_book',methods={'POST'})
+@app.route('/update_request_for_book', methods={'POST'})
 def update_request_for_book():
     """
     add a request for a book by needy
@@ -70,8 +77,7 @@ def update_request_for_book():
     result = db_services.update_request_for_book(book_id = book_id, request_user_id = request_user_id)
     return jsonify(result)
 
-
-@app.route('/get_requested_items',methods={'GET'})
+@app.route('/get_requested_items', methods={'GET'})
 def get_requested_items():
     """
     fetch the requested items by a particular needy
@@ -80,7 +86,7 @@ def get_requested_items():
     result = db_services.get_requested_items(request_user_id = request_user_id)
     return jsonify(result)
 
-@app.route('/get_needy_info',methods={'GET'})
+@app.route('/get_needy_info', methods={'GET'})
 def get_needy_info():
     """
     get list of interested needy for each book donated
@@ -90,7 +96,7 @@ def get_needy_info():
     print(result)
     return jsonify(result)
 
-@app.route('/accept_book_request',methods={'POST'})
+@app.route('/accept_book_request', methods={'POST'})
 def accept_book_request():
 
     """
@@ -101,7 +107,6 @@ def accept_book_request():
     book_id = data['book_id']
     result = db_services.accept_book_request(book_id = book_id, request_id = request_id)
     return jsonify(result)
-
        
 if __name__=='__main__':
     app.run(debug=True)

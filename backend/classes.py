@@ -1,4 +1,14 @@
+"""
+Defines the three main entities as classes: User, Request and Book.
+Each class consists of attributes and functions that define it's state and some basic behavior.
+"""
+
 class User:
+    """
+    Consists -
+    Attributes: user_id, user_name, user_email, user_pass, and location
+    Functions: get and print data, and function to get json of User object
+    """
     def __init__(self, user_id = None, user_name = None, user_email = None, user_pass = None, location = None) -> None:
         self.user_id = user_id
         self.user_name = user_name
@@ -31,6 +41,11 @@ class User:
         return self.__dict__
                
 class Request:
+    """
+    Consists -
+    Attributes: request_id, request_user_id, book_id, queue_order, and request_status
+    Functions: get and print data, and function to get json of Request object
+    """
     def __init__(self, request_id = None, request_user_id = None, book_id = None, queue_order = None, request_status = 'PENDING') -> None:
         self.request_id = request_id
         self.request_user_id = request_user_id
@@ -60,6 +75,11 @@ class Request:
         return self.__dict__
     
 class Book:
+    """
+    Consists -
+    Attributes: book_id, book_name, author, genre, donation_status, request_count, user_id, and description
+    Functions: get and print data, and function to get json of Book object
+    """
     def __init__(self, book_id = None, book_name = None, author = None, genre = None, donation_status = None, request_count = None, user_id = None, description = None) -> None:
         self.book_id = book_id
         self.book_name = book_name

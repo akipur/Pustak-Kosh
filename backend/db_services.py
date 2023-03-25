@@ -1,34 +1,54 @@
 """
-
+Consists database utility functions that allow performance of queries on connected database. The various
+functionalities and features of the service are implemented using these functions.
 """
 from db_connector import *
 from classes import *
-def sign_up_user(user_name,user_pass,location,email_id):
+
+def sign_up_user(user_name, user_pass, location, email_id) -> str:
+    """Inserts user data into database for new user being registered
+
+    Args:
+        user_name (str): name of user
+        user_pass (str): password for user login
+        location (str): location of user
+        email_id (str): email-id of user
+
+    Returns:
+        str: message of failure/success in adding new user
+    """
     db_connection = get_db_connection()
     cur = db_connection.cursor()
     insert_query = " INSERT INTO user(user_name,user_pass,location,email_id) VALUES(%s,%s,%s,%s)"
     try:
-        cur.execute(insert_query, (user_name,user_pass, location,email_id))
+        cur.execute(insert_query, (user_name,user_pass,location,email_id))
         db_connection.commit()
     except:
         return {'status': False, 'error': "Failed to insert"}
-    result="sign up done"
+    result = "sign up done"
     return result
-def login(user_name,user_pass):
+
+def login(user_name, user_pass) -> dict:
+    """allows user to login using username and password
+
+    Args:
+        user_name (str): username associated with user profile
+        user_pass (str): password to login for user
+
+    Returns:
+        dict: gives status of login completion and user_id
+    """
     db_connection = get_db_connection()
     cur = db_connection.cursor()
     query = "SELECT user_id FROM user WHERE user_name=%s and user_pass=%s"
     cur.execute(query, (user_name, user_pass))
     row = cur.fetchall()
-
     if len(row)==0:
-        result="wrong credentials"
+        result="Wrong Credentials"
         return result
     else:
-        token = User(user_id=row[0])
-        return {'status': 'login complete', 'user_id':token.get_json()}
-    
-
+        user_object = User(user_id = row[0])
+        return {'status': 'login complete', 'user_id': user_object.get_json()}
 
 def get_all_books(user_id = None, donation_status = None) -> list:
     """Gets all details of all books for given user id or donation status or both
