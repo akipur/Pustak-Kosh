@@ -3,6 +3,35 @@ import db_services
 
 app = Flask(__name__)
 
+@app.route('/sign_up_user',methods={'POST'})
+def sign_up_user():
+
+    """
+    to sign up a new user
+    """
+    data = request.get_json()
+    user_name = data['user_name']
+    user_pass = data['user_pass']
+    
+    location = data['location']
+    email_id = data['email_id']
+    
+    result =db_services.sign_up_user(user_name=user_name,user_pass=user_pass,location=location,email_id=email_id)
+    return jsonify(result)
+@app.route('/login',methods={'POST'})
+def login():
+
+    """
+    to login a user
+    """
+    data = request.get_json()
+    user_name = data['user_name']
+    user_pass = data['user_pass']
+    
+    
+    
+    result =db_services.login(user_name=user_name,user_pass=user_pass)
+    return jsonify(result)
 @app.route('/get_all_books',methods={'GET'})
 def get_all_books():
     """ 
