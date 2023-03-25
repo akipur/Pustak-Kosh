@@ -1,0 +1,43 @@
+Navbarscroll->Navbar
+home page designing
+basic example donoe->name
+shift to class 
+componenetdid mount
+file of components starts with capital
+Parent Comp
+
+state ch1:name , ch2 name
+
+render CH1(props = name of ch1, update_name) , ch2(ch)
+
+
+
+Ch1:
+
+prop: ch1_name, update_name
+
+render
+Mbutton update_my_name
+
+
+Donor 
+
+state: books[]
+
+
+submit_add_new_book() {
+    fetch
+    update state
+}
+
+render 
+add new modal(visible on button click)
+prop = submit_add_new_book
+
+list of Books
+[4:01 pm, 24/03/2023] D.E. Shaw Manas Shukla Sir: Add new Modal:
+props = submit_add_new_book
+
+render:
+Form
+submit
