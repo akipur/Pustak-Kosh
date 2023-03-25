@@ -35,17 +35,13 @@ export default class Donor extends React.Component {
     console.log(formData)
     formData = {
       user_id: 2,
-      book_name: 'test_book', author: 'Parul', genre: 'fic', description: 'desc', donation_status: 'PENDING'
+      book_name: 'test_book1', author: 'Parul', genre: 'fic', description: 'desc', donation_status: 'PENDING'
     }
     fetch('http://127.0.0.1:5000/add_new_book', {
       method: 'POST',
       headers: {
         'Accept': 'application/json',
         'Content-Type': 'application/json',
-		    "Access-Control-Allow-Origin": "*",
-      	"Access-Control-Allow-Credentials": "true",
-      	"Access-Control-Allow-Methods": "GET,HEAD,OPTIONS,POST,PUT",
-      	"Access-Control-Allow-Headers": "Origin, X-Requested-With, Content-Type, Accept, Authorization"
       },
       body: JSON.stringify(formData)
     })
@@ -53,11 +49,11 @@ export default class Donor extends React.Component {
         const new_book = res['inserted_book'];
         this.setState((state) => {
           return {
-            books: [...state, new_book]
+            books: [...state.books, new_book]
           }
         })
       })
-      this.closeAddNewModal();
+    this.closeAddNewModal();
   }
 
 
@@ -67,7 +63,7 @@ export default class Donor extends React.Component {
         <div className="container-fluid py-3">
           <div className="row">
             <h1 className='text-center'>Donor Page</h1>
-            <div style={{ display: 'flex', justifyContent: 'space-between' }}>
+            <div style={{ display: 'flex', justifyContent: 'space-between' ,marginBottom: '15px'}}>
 
               <Button variant="dark" onClick={this.openAddNewModal}> +Add New Book</Button>
               <AddNewModal
@@ -93,23 +89,26 @@ export default class Donor extends React.Component {
               </Dropdown>
 
             </div>
-            <div>
-              {
-                this.state.books.map((book) => {
-                  return (
-                    <DonorCard
-                      key={book.book_id}
-                      name={book.book_name}
-                      author={book.author}
-                      genre={book.genre}
-                      description={book.description}
-                    />
-                  )
-                })
-              }
-            </div>
+            
+            <div style={{display: "flex",
+            flexwrap: "wrap",
+            justifycontent: "space-between"}}>
+            {
+              this.state.books.map((book) => {
+                return (
+                  <DonorCard
+                    key={book.book_id}
+                    name={book.book_name}
+                    author={book.author}
+                    genre={book.genre}
+                    description={book.description}
+                  />
+                )
+              })
+            }
           </div>
         </div>
+      </div>
 
       </>
     );
