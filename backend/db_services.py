@@ -14,6 +14,20 @@ def sign_up_user(user_name,user_pass,location,email_id):
         return {'status': False, 'error': "Failed to insert"}
     result="sign up done"
     return result
+def login(user_name,user_pass):
+    db_connection = get_db_connection()
+    cur = db_connection.cursor()
+    query = "SELECT user_id FROM user WHERE user_name=%s and user_pass=%s"
+    cur.execute(query, (user_name, user_pass))
+    row = cur.fetchall()
+
+    if len(row)==0:
+        result="wrong credentials"
+        return result
+    else:
+        token = User(user_id=row[0])
+        return {'status': 'login complete', 'user_id':token.get_json()}
+    
 
 
 def get_all_books(user_id = None, donation_status = None) -> list:
@@ -101,7 +115,7 @@ def update_request_for_book(book_id , request_user_id ) -> dict:
     return {'status': True, 'request_added': request_object.get_json()}
 
 def add_new_book(user_id , book_name , author , genre ,
-                 description , status = 'PENDING') -> dict:
+                 description , donation_status = None) -> dict:
     """Adds new book with given details to Book table
 
     Args:
@@ -118,7 +132,7 @@ def add_new_book(user_id , book_name , author , genre ,
     db_connection = get_db_connection()
     cur = db_connection.cursor()
     query = "INSERT INTO book(book_name,description,author,genre,donation_status,user_id) VALUES (%s,%s,%s,%s,%s,%s)"
-    cur.execute(query, (book_name, description, author, genre, status, user_id))
+    cur.execute(query, (book_name, description, author, genre, donation_status, user_id))
     db_connection.commit()   
     query = "SELECT book_id,book_name,author,genre,donation_status,user_id,request_count,description from book where book_name=%s and user_id=%s"
     val = (book_name, user_id)
@@ -177,7 +191,7 @@ def get_needy_info(book_id ) -> list:
     for row in rows:
         request_object = Request(request_id = row[0], request_user_id = row[1], book_id = row[2],
                                  queue_order = row[3], request_status = row[4])
-        user_object = User(user_name = row[5])
+        user_object = User(user_name = row[6])
         entry = (request_object.get_json() | user_object.get_json())
         result.append(entry)
     print(result)
