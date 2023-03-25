@@ -1,5 +1,5 @@
 class User:
-    def __init__(self, user_id, user_name, user_email, user_pass, location) -> None:
+    def __init__(self, user_id = None, user_name = None, user_email = None, user_pass = None, location = None) -> None:
         self.user_id = user_id
         self.user_name = user_name
         self.user_email = user_email
@@ -31,7 +31,7 @@ class User:
         return self.__dict__
                
 class Request:
-    def __init__(self, request_id, request_user_id, book_id, queue_order, request_status = 'PENDING') -> None:
+    def __init__(self, request_id = None, request_user_id = None, book_id = None, queue_order = None, request_status = 'PENDING') -> None:
         self.request_id = request_id
         self.request_user_id = request_user_id
         self.book_id = book_id
@@ -60,7 +60,7 @@ class Request:
         return self.__dict__
     
 class Book:
-    def __init__(self, book_id, book_name, author, genre, donation_status, request_count, user_id, description) -> None:
+    def __init__(self, book_id = None, book_name = None, author = None, genre = None, donation_status = None, request_count = None, user_id = None, description = None) -> None:
         self.book_id = book_id
         self.book_name = book_name
         self.author = author
