@@ -119,58 +119,55 @@ def add_new_book(user_id = None, book_name = None, author = None, genre = None,
             user_id = rows[0][6],
             description = rows[0][7])
     return {'status': True, 'inserted_book': book_object.get_json()}
-#remaining portion begins
-def get_requested_items(request_user_id):
-        db_connection = get_db_connection()
-        cur = db_connection.cursor()
-        query = "Select book.book_id,book_name,author,genre,queue_order,request_status,user_name,email_id from book left join request on book.book_id=request.book_id left join user on book.user_id=user.user_id WHERE request_user_id=%s"
-        cur.execute(query, (request_user_id,))
-        rows = cur.fetchall()
-        result = []
-        for row in rows:
-          entry = {
-            'book_id': row[0],
-            'book_name': row[1],
-            'author':row[2],
-            'genre':row[3],
-            'queue_order':row[4],
-            'request_status':row[5],
-            'user_name':row[6],
-            'email_id':row[7]
-            }
-        result.append(entry)
-        print(result)
-        return result
-#remaining portion continued
-def get_needy_info(book_id):
+
+def get_requested_items(request_user_id = None) -> list:
+    """Using given user id finds details of items corresponding to user's associated request
+
+    Args:
+        request_user_id (str, optional): numeric key to identify which user made the request. Defaults to None.
+
+    Returns:
+        list: details of the book requested and the user who received it
+    """
     db_connection = get_db_connection()
     cur = db_connection.cursor()
-    query="Select * from request left join user on request.request_user_id=user.user_id WHERE book_id=%s"
+    query = "Select book.book_id,book_name,author,genre,queue_order,request_status,user_name,email_id from book left join request on book.book_id=request.book_id left join user on book.user_id=user.user_id WHERE request_user_id=%s"
+    cur.execute(query, (request_user_id,))
+    rows = cur.fetchall()
+    result = []
+    for row in rows:
+        book_object = Book(book_id = row[0], book_name = row[1], author = row[2], genre = row[3])
+        request_object = Request(request_user_id = request_user_id, queue_order = row[4], request_status = row[5])
+        user_object = User(user_name = row[6], user_email = row[7])
+        entry = (book_object.get_json() | (request_object.get_json() | user_object.get_json()))
+        result.append(entry)
+    print(result)
+    return result
+
+def get_needy_info(book_id = None) -> list:
+    """corresponding to given book_id, gives details of all "needy" users that made request for that book.
+
+    Args:
+        book_id (int, optional): numeric key to identify book. Defaults to None.
+
+    Returns:
+        list: details of requests made for given book and the users who made the requests.
+    """
+    db_connection = get_db_connection()
+    cur = db_connection.cursor()
+    query = "Select * from request left join user on request.request_user_id=user.user_id WHERE book_id=%s"
     cur.execute(query, (book_id, ))
     rows = cur.fetchall()
     result = []
     for row in rows:
-        request_object = Request(request_id = row[0],
-                             request_user_id = row[1],
-                             book_id = row[2],
-                             queue_order = row[3],
-                             request_status = 'PENDING')
-       
-        entry = {
-            'request_id': row[0],
-            'request_user_id': row[1],
-            
-            'queue_order':row[3],
-            
-            'user_name':row[5]
-             
-
-            #...
-            }
+        request_object = Request(request_id = row[0], request_user_id = row[1], book_id = row[2],
+                                 queue_order = row[3], request_status = row[4])
+        user_object = User(user_name = row[5])
+        entry = (request_object.get_json() | user_object.get_json())
         result.append(entry)
     print(result)
     return result
-#remaining portion ends
+
 def accept_book_request(book_id = None, request_id = None) -> str:
     """Sets status of a book to have been accepted by needy
 
