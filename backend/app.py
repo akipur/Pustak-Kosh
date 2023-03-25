@@ -4,9 +4,13 @@ The API's make use of db_service functions to interact with the database.
 """
 
 from flask import *
+from flask_cors import CORS, cross_origin
+app = Flask(__name__)
+cors = CORS(app)
+app.config['CORS_HEADERS'] = 'Content-Type'
+
 import db_services 
 
-app = Flask(__name__)
 
 @app.route('/sign_up_user', methods={'POST'})
 def sign_up_user():
@@ -49,7 +53,8 @@ def get_all_books():
     result = db_services.get_all_books(user_id = user_id, donation_status = donation_status)
     return jsonify(result)
 
-@app.route('/add_new_book', methods={'POST'})
+@app.route('/add_new_book',methods={'POST'})
+@cross_origin()
 def add_new_book():
 
     """
@@ -66,7 +71,8 @@ def add_new_book():
                           genre = genre, description = description, donation_status = donation_status)
     return jsonify(result)
 
-@app.route('/update_request_for_book', methods={'POST'})
+@app.route('/update_request_for_book',methods={'POST'})
+@cross_origin()
 def update_request_for_book():
     """
     add a request for a book by needy
@@ -96,7 +102,8 @@ def get_needy_info():
     print(result)
     return jsonify(result)
 
-@app.route('/accept_book_request', methods={'POST'})
+@app.route('/accept_book_request',methods={'POST'})
+@cross_origin()
 def accept_book_request():
 
     """

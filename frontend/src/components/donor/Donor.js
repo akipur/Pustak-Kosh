@@ -4,35 +4,61 @@ import { Link } from 'react-router-dom';
 import Dropdown from 'react-bootstrap/Dropdown';
 import React from 'react';
 import DonorCard from './DonorCard';
+import AddNewModal from '../AddnewModal'
 
 export default class Donor extends React.Component {
 
   constructor(props) {
     super(props)
     this.state = {
-      books: []
+      books: [],
+      showModal: false
     }
+  }
+
+  openAddNewModal = () => {
+    this.setState({ showModal: true })
+  }
+
+  closeAddNewModal = () => {
+    this.setState({ showModal: false })
   }
 
   componentDidMount() {
     fetch('http://127.0.0.1:5000/get_all_books?' + new URLSearchParams({
       user_id: 2,
       donation_status: 'PENDING',
-    })).then(res => res.json()).then(res => this.setState({books:res}))
+    })).then(res => res.json()).then(res => this.setState({ books: res }))
   }
 
-  /*handleSubmit(formData) {
-    fetch(post, body: JSON.stringify(formData))
-    .then(res => res.json())
-    .then(res => {
-      const new_book = res['new_book'];
-      this.setState((state) => {
-        return {
-          books: [...state, new_book];
-        }
-      })
+  handleSubmit = (formData) => {
+    console.log(formData)
+    formData = {
+      user_id: 2,
+      book_name: 'test_book', author: 'Parul', genre: 'fic', description: 'desc', donation_status: 'PENDING'
+    }
+    fetch('http://127.0.0.1:5000/add_new_book', {
+      method: 'POST',
+      headers: {
+        'Accept': 'application/json',
+        'Content-Type': 'application/json',
+		    "Access-Control-Allow-Origin": "*",
+      	"Access-Control-Allow-Credentials": "true",
+      	"Access-Control-Allow-Methods": "GET,HEAD,OPTIONS,POST,PUT",
+      	"Access-Control-Allow-Headers": "Origin, X-Requested-With, Content-Type, Accept, Authorization"
+      },
+      body: JSON.stringify(formData)
     })
-  }*/
+      .then(res => res.json()).then(res => {
+        const new_book = res['inserted_book'];
+        this.setState((state) => {
+          return {
+            books: [...state, new_book]
+          }
+        })
+      })
+      this.closeAddNewModal();
+  }
 
 
   render() {
@@ -43,7 +69,12 @@ export default class Donor extends React.Component {
             <h1 className='text-center'>Donor Page</h1>
             <div style={{ display: 'flex', justifyContent: 'space-between' }}>
 
-              <Button variant="dark" onClick={this.addNewBook}> Submit</Button>
+              <Button variant="dark" onClick={this.openAddNewModal}> +Add New Book</Button>
+              <AddNewModal
+                show={this.state.showModal}
+                handleClose={this.closeAddNewModal}
+                handleSubmit={this.handleSubmit}
+              />
 
               <Dropdown>
                 <Dropdown.Toggle id="dropdown-button-dark-example1" variant="dark">
