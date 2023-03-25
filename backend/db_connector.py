@@ -1,10 +1,7 @@
 import mysql.connector
-
+import  json
 def get_db_connection():
-    my_db_connection = mysql.connector.connect(
-    host="localhost",
-    user="root",
-    password="10082003",
-    database="pustakkosh")
+    config=json.load(open('./config.json'))
+    my_db_connection = mysql.connector.connect(**config)
  
     return my_db_connection

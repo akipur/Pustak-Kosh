@@ -1,5 +1,20 @@
+"""
+
+"""
 from db_connector import *
 from classes import *
+def sign_up_user(user_name,user_pass,location,email_id):
+    db_connection = get_db_connection()
+    cur = db_connection.cursor()
+    insert_query = " INSERT INTO user(user_name,user_pass,location,email_id) VALUES(%s,%s,%s,%s)"
+    try:
+        cur.execute(insert_query, (user_name,user_pass, location,email_id))
+        db_connection.commit()
+    except:
+        return {'status': False, 'error': "Failed to insert"}
+    result="sign up done"
+    return result
+
 
 def get_all_books(user_id = None, donation_status = None) -> list:
     """Gets all details of all books for given user id or donation status or both
@@ -46,7 +61,7 @@ def get_all_books(user_id = None, donation_status = None) -> list:
     print(display_result)
     return display_result
 
-def update_request_for_book(book_id = None, request_user_id = None) -> dict:
+def update_request_for_book(book_id , request_user_id ) -> dict:
     """Updates the request count (number of requests made) for a specific book
 
     Args:
@@ -85,8 +100,8 @@ def update_request_for_book(book_id = None, request_user_id = None) -> dict:
                              request_status = 'PENDING')
     return {'status': True, 'request_added': request_object.get_json()}
 
-def add_new_book(user_id = None, book_name = None, author = None, genre = None,
-                 description = None, status = 'PENDING') -> dict:
+def add_new_book(user_id , book_name , author , genre ,
+                 description , status = 'PENDING') -> dict:
     """Adds new book with given details to Book table
 
     Args:
@@ -120,7 +135,7 @@ def add_new_book(user_id = None, book_name = None, author = None, genre = None,
             description = rows[0][7])
     return {'status': True, 'inserted_book': book_object.get_json()}
 
-def get_requested_items(request_user_id = None) -> list:
+def get_requested_items(request_user_id ) -> list:
     """Using given user id finds details of items corresponding to user's associated request
 
     Args:
@@ -144,7 +159,7 @@ def get_requested_items(request_user_id = None) -> list:
     print(result)
     return result
 
-def get_needy_info(book_id = None) -> list:
+def get_needy_info(book_id ) -> list:
     """corresponding to given book_id, gives details of all "needy" users that made request for that book.
 
     Args:
@@ -168,7 +183,7 @@ def get_needy_info(book_id = None) -> list:
     print(result)
     return result
 
-def accept_book_request(book_id = None, request_id = None) -> str:
+def accept_book_request(book_id, request_id) -> str:
     """Sets status of a book to have been accepted by needy
 
     Args:

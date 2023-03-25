@@ -1,5 +1,5 @@
 from flask import *
-from db_services import *
+import db_services 
 
 app = Flask(__name__)
 
@@ -10,7 +10,7 @@ def get_all_books():
     """
     user_id = request.args.get('user_id')
     donation_status = request.args.get('donation_status')
-    result = get_all_books(user_id = user_id, donation_status = donation_status)
+    result = db_services.get_all_books(user_id = user_id, donation_status = donation_status)
     return jsonify(result)
 
 @app.route('/add_new_book',methods={'POST'})
@@ -26,7 +26,7 @@ def add_new_book():
     genre = data['genre']
     description = data['description']
     donation_status = data['donation_status']
-    result = add_new_book(user_id = user_id, book_name = book_name, author = author,
+    result = db_services.add_new_book(user_id = user_id, book_name = book_name, author = author,
                           genre = genre, description = description, donation_status = donation_status)
     return jsonify(result)
 
@@ -38,7 +38,7 @@ def update_request_for_book():
     data = request.get_json()
     request_user_id = data['user_id']
     book_id = data['book_id']
-    result = update_request_for_book(book_id = book_id, request_user_id = request_user_id)
+    result = db_services.update_request_for_book(book_id = book_id, request_user_id = request_user_id)
     return jsonify(result)
 
 
@@ -48,7 +48,7 @@ def get_requested_items():
     fetch the requested items by a particular needy
     """
     request_user_id = request.args.get('user_id')
-    result = get_requested_items(request_user_id = request_user_id)
+    result = db_services.get_requested_items(request_user_id = request_user_id)
     return jsonify(result)
 
 @app.route('/get_needy_info',methods={'GET'})
@@ -57,7 +57,7 @@ def get_needy_info():
     get list of interested needy for each book donated
     """
     book_id = request.args.get('book_id')   
-    result = get_needy_info(book_id = book_id)
+    result = db_services.get_needy_info(book_id = book_id)
     print(result)
     return jsonify(result)
 
@@ -70,9 +70,10 @@ def accept_book_request():
     data = request.get_json()
     request_id = data['request_id']
     book_id = data['book_id']
-    result = accept_book_request(book_id = book_id, request_id = request_id)
+    result = db_services.accept_book_request(book_id = book_id, request_id = request_id)
     return jsonify(result)
 
        
 if __name__=='__main__':
     app.run(debug=True)
+
