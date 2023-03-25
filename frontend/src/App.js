@@ -5,7 +5,7 @@ import Home from './components/Home';
 import Donor from './components/donor/Donor';
 import Login from './components/Login';
 import SignUp from './components/Signup';
-import Needy from './components/Needy';
+import Needy from './components/needy/Needy';
 
 function App() {
   return (
@@ -15,9 +15,9 @@ function App() {
       <Routes>
         <Route path="/" element={<Home/>}/>
         <Route path="/Donor" element={<Donor/>}/>
-        <Route path="/needy" element={<Needy/>}/>
-        <Route path="/login" element={<Login/>}/>
-        <Route path="/signup" element={<SignUp/>}/>
+        <Route path="/Needy" element={<Needy/>}/>
+        <Route path="/Login" element={<Login/>}/>
+        <Route path="/Signup" element={<SignUp/>}/>
         </Routes>
     </BrowserRouter> 
    

@@ -6,7 +6,7 @@ import Card from 'react-bootstrap/Card';
 export default function donorCard(props) {
     const {name,author,genre,description} = props;
   return (
-    <div className="col-md-3">
+    <div className="col-md-3 py-3">
     <Card style={{ width: '18rem' }}>
   <Card.Body>
     <Card.Title>{name}</Card.Title>
