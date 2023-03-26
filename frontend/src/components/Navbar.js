@@ -7,7 +7,7 @@ import { Link } from 'react-router-dom';
 
 function Header() {
   return (
-    <Navbar bg="dark" expand="lg" variant="dark">
+    <Navbar style={{backgroundColor: '#707BFB', color:'#fff'}} expand="lg" >
       <Container fluid>
         <Navbar.Brand as={Link} to="#">PustakKosh</Navbar.Brand>
         <Navbar.Toggle aria-controls="navbarScroll" />

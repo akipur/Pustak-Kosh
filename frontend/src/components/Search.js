@@ -13,15 +13,24 @@ function SearchBar(props) {
   }
 
   return (
-    <form onSubmit={handleSearch}>
-      <input
+    <div className="container-fluid">
+    <form className="flex" onSubmit={handleSearch} >
+    <div className="row">
+    <div className="col-md-8">
+        <input
         type="text"
         placeholder="Search..."
+        className="form-control"
         value={searchTerm}
         onChange={handleInputChange}
       />
-      <button type="submit">Search</button>
+       </div>
+       <div className="col-md-4">
+       <button type="submit" className="btn" style={{backgroundColor: 'black' ,color:'white'}}>Search</button>
+       </div>
+      </div>
     </form>
+  </div>
   );
 }
 

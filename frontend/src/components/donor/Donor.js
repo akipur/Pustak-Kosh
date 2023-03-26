@@ -1,10 +1,9 @@
 import Button from 'react-bootstrap/Button';
-import Card from 'react-bootstrap/Card';
-import { Link } from 'react-router-dom';
 import Dropdown from 'react-bootstrap/Dropdown';
 import React from 'react';
 import DonorCard from './DonorCard';
 import AddNewModal from '../AddnewModal'
+
 
 export default class Donor extends React.Component {
 
@@ -31,12 +30,11 @@ export default class Donor extends React.Component {
     })).then(res => res.json()).then(res => this.setState({ books: res }))
   }
 
+    
+
   handleSubmit = (formData) => {
     console.log(formData)
-    formData = {
-      user_id: 2,
-      book_name: 'test_book1', author: 'Parul', genre: 'fic', description: 'desc', donation_status: 'PENDING'
-    }
+    
     fetch('http://127.0.0.1:5000/add_new_book', {
       method: 'POST',
       headers: {
@@ -55,7 +53,6 @@ export default class Donor extends React.Component {
       })
     this.closeAddNewModal();
   }
-
 
   render() {
     return (
