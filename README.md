@@ -80,17 +80,23 @@ Ensure you are within frontend folder of repository.
 ### Available Scripts: 
 In terminal, run commands:
 
-**npm start:**  
+```npm install```
+->install all the dependencies required to run the application
+->generates 'package.json' to list all dependencies
+->Installs all the required packages and modules
+-> essential step in setting up a new React project
+
+```npm start:```  
 -> Runs the app in the development mode.  
 -> Open http://localhost:3000 to view it in the browser.  
 -> The page will reload if you make edits.  
 -> You will also see any lint errors in the console.  
 
-**npm test:**  
+```npm test:``` 
 -> Launches the test runner in the interactive watch mode.  
 -> See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.  
 
-**npm run build:**  
+```npm run build:```  
 -> Builds the app for production to the build folder. 
 -> It correctly bundles React in production mode and optimizes the build for the best performance.  
 -> The build is minified and the filenames include the hashes.  
@@ -98,7 +104,7 @@ In terminal, run commands:
 -> See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.  
 
 
-**npm run eject:**  
+```npm run eject:```  
 -> This is a one-way operation. Once you eject, you can’t go back.
 -> This command will remove the single build dependency from the project.  
 -> It will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) into the project to have full control over them.  
