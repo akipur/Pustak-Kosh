@@ -2,6 +2,7 @@ import React from 'react';
 import { motion } from 'framer-motion';
 import Card from 'react-bootstrap/Card';
 import firstslide from '../images/hero.png';
+import {Link} from 'react-router-dom';
 
 
 function home() {
@@ -11,7 +12,7 @@ function home() {
         <div className="row">
           <div className="col-md-6  d-flex flex-column justify-content-center">
             <h1 className='fw-bold'>Welcome To Pustakkosh</h1>
-            <p>Pustakkosh is a place where you can donate books & needy can request that books. Learners can learn things & discuss it with community.</p>
+            <p>One stop solution for all the bookworms. DONATE, REQUEST and LEARN from books of top world class authors.</p>
             <div className='col-md-6'>
               {/* <Button style={{backgroundColor: '#707BFB'}}> */}
               <motion.button
@@ -21,7 +22,7 @@ function home() {
                 }}
                 whileTap={{ scale: 0.9 }}
                 className="btn" style={{ backgroundColor: '#707BFB', color: '#fff' }}>
-                <Link to="/donor">
+                <Link style={{color: '#fff', textDecoration:'none'}} to="/donor">
                 Explore Now
                 </Link>
               </motion.button>
@@ -56,7 +57,7 @@ function home() {
                   <Card.Title className='fw-bold text-center' style={{ color: '#707BFB' }}>Donor</Card.Title>
                   <Card.Text className='text-center'>
 
-                    Lorem ipsum dolor sit amet consectetur adipisicing elit. Quaerat totam quisquam, adipisci quo ut cum rerum sapiente vel maiores eligendi!
+                   Donate your used books to someone in need with our hassle free system.
                   </Card.Text>
                  
                 </Card.Body>
@@ -75,7 +76,7 @@ function home() {
                   <Card.Title className='fw-bold text-center' style={{ color: '#707BFB' }}>Needy</Card.Title>
                   <Card.Text className='text-center'>
 
-                    Lorem ipsum dolor sit amet consectetur adipisicing elit. Quaerat totam quisquam, adipisci quo ut cum rerum sapiente vel maiores eligendi!
+                   Get all books of world class authors by simply raising a request on our system.
                   </Card.Text>
                  
                 </Card.Body>
@@ -94,7 +95,7 @@ function home() {
                   <Card.Title className='fw-bold text-center' style={{ color: '#707BFB' }}>Learn</Card.Title>
                   <Card.Text className='text-center'>
 
-                    Lorem ipsum dolor sit amet consectetur adipisicing elit. Quaerat totam quisquam, adipisci quo ut cum rerum sapiente vel maiores eligendi!
+                   Learn anything from any book online from our 24x7 online portal 
                   </Card.Text>
                   
                 </Card.Body>
@@ -113,7 +114,7 @@ function home() {
                   <Card.Title className='fw-bold text-center' style={{ color: '#707BFB' }}>Community</Card.Title>
                   <Card.Text className='text-center'>
 
-                    Lorem ipsum dolor sit amet consectetur adipisicing elit. Quaerat totam quisquam, adipisci quo ut cum rerum sapiente vel maiores eligendi!
+                   Join our community with thousands of like minded people to share ideas. 
                   </Card.Text>
                   
                 </Card.Body>

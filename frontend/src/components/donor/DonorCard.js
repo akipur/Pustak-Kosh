@@ -14,12 +14,11 @@ const handleSubmitReq = (e, book_id) => {
   )
     .then((res) => res.json())
     .then((res) => console.log(res));
-  console.log("data");
 };
 
 export default function donorCard(props) {
   const { book_id, name, author, genre, description } = props;
-  
+ 
   return (
     <div className="col-md-3 py-3">
       <Card
