@@ -18,6 +18,7 @@ The Pustak-Kosh service joins book-lovers around the globe by connecting donors 
 ## Setting Up:
 To run this service on your local **_Windows_** machine, please follow the set-up procedure mentioned below.  
 All of the set-up must be done in the same destination folder as where the repository exist.
+
 ### Installing Python:
 **Step 1:**  Check if python is already installed. To do so, open Command Prompt or Windows PowerShell type there "python -V".  
 
@@ -37,6 +38,13 @@ All of the set-up must be done in the same destination folder as where the repos
 **Step 3:**  Run the command "python".  
 
 **Step 4:**  Run the command "import flask".
+
+### Installing Node.js and npm:
+**Step 1:**  Open the Command Prompt in Administrator Mode.  
+
+**Step 2:**  Ensure you are in the frontend folder.  
+
+**Step 3:**  Run the command "npm install -g npm".  
 
 ### Setting Up The Database:
 **Step 1:**  Set up a MySQL database following the given ER diagram.  
@@ -66,3 +74,34 @@ You can use generated http to run various featured APIs. They are:
 6. http://.../get_requested_items  
 7. http://.../get_needy_info  
 8. http://.../accept_book_request
+
+## Running Frontend:
+Ensure you are within frontend folder of repository.
+### Available Scripts: 
+In terminal, run commands:
+
+**npm start:**  
+-> Runs the app in the development mode.  
+-> Open http://localhost:3000 to view it in the browser.  
+-> The page will reload if you make edits.  
+-> You will also see any lint errors in the console.  
+
+**npm test:**  
+-> Launches the test runner in the interactive watch mode.  
+-> See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.  
+
+**npm run build:**  
+-> Builds the app for production to the build folder. 
+-> It correctly bundles React in production mode and optimizes the build for the best performance.  
+-> The build is minified and the filenames include the hashes.  
+-> App is ready to be deployed.  
+-> See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.  
+
+
+**npm run eject:**  
+-> This is a one-way operation. Once you eject, you can’t go back.
+-> This command will remove the single build dependency from the project.  
+-> It will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) into the project to have full control over them.  
+-> All of the commands except eject will still work, but they will point to the copied scripts.  
+-> You don’t have to ever use eject. The curated feature set is suitable for small and middle deployments.  
+-> However, this tool wouldn’t be useful if not customizable when you are ready for it.
