@@ -6,16 +6,18 @@ import Form from 'react-bootstrap/Form';
 export default function AddNewModal(props) {
 
   const [formData, setFormData] = useState({
-    book: '',
-    author: '',
-    genre: '',
-    desc: '',
+    user_id: 2,
+    book_name: 'test book ' + Date.now(),
+    author: 'parul #' + Date.now(),
+    genre: 'novel',
+    description: 'description',
+    donation_status: "PENDING"
   });
-  const handleSubmit = (e) => {
-    e.preventDefault();
-    const jsonData = JSON.stringify(formData);
-    console.log(jsonData);
-  };
+  // const handleSubmit = (e) => {
+  //   e.preventDefault();
+  //   const jsonData = JSON.stringify(formData);
+  //   console.log(jsonData);
+  // };
   const handleChange = (e) => {
     setFormData({
       ...formData,
@@ -38,24 +40,24 @@ export default function AddNewModal(props) {
         <Form>
           <Form.Group className="mb-3" controlId="formBasicPassword">
             <Form.Label>Book Name</Form.Label>
-            <Form.Control type="text" value="xyz" onChange={handleChange} placeholder="Book Name" />
+            <Form.Control type="text" value={formData.book_name} name="book_name" onChange={handleChange} placeholder="Book Name" />
           </Form.Group>
           <Form.Group className="mb-3" controlId="formBasicPassword">
             <Form.Label>Author Name</Form.Label>
-            <Form.Control type="text" value="pqr" onChange={handleChange} placeholder="Author Name" />
+            <Form.Control type="text" value={formData.author} name="author" onChange={handleChange} placeholder="Author Name" />
           </Form.Group>
           <Form.Group className="mb-3" controlId="formBasicPassword">
             <Form.Label>Genre</Form.Label>
-            <Form.Control type="text" value="novel" onChange={handleChange} placeholder="Genre" />
+            <Form.Control type="text" value={formData.genre} name="genre" onChange={handleChange} placeholder="Genre" />
           </Form.Group>
           <Form.Group className="mb-3" controlId="formBasicPassword">
             <Form.Label>Description</Form.Label>
-            <textarea name="" id="" cols="10" rows="3" value="description" onChange={handleChange} className='form-control'></textarea>
+            <textarea name="description" value={formData.description} onChange={handleChange} className='form-control'></textarea>
           </Form.Group>
           <Button variant="secondary" onClick={props.handleClose}>
             Close
           </Button>
-          <Button variant="primary" type="submit" onClick={(formData) => props.handleSubmit(formData)} >Add Book</Button>
+          <Button variant="primary" type="submit" onClick={(e) => props.handleSubmit(e,formData)}> + Add Book</Button>
         </Form>
       </Modal.Body>
       <Modal.Footer>

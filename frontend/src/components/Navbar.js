@@ -20,7 +20,7 @@ function Header() {
             <Nav.Link as={Link} to="/">Home</Nav.Link>
             <Nav.Link as={Link} to="/Donor">Donor</Nav.Link>
             <Nav.Link as={Link} to="/Needy" >Needy</Nav.Link>
-            <Nav.Link as={Link} to="#" >Learn</Nav.Link>
+            <Nav.Link as={Link} to="/Learn" >Learn</Nav.Link>
             <Nav.Link as={Link} to="#" >Community</Nav.Link>
           </Nav>
           <Nav>

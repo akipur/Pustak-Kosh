@@ -21,7 +21,9 @@ function home() {
                 }}
                 whileTap={{ scale: 0.9 }}
                 className="btn" style={{ backgroundColor: '#707BFB', color: '#fff' }}>
+                <Link to="/donor">
                 Explore Now
+                </Link>
               </motion.button>
               {/* </Button> */}
             </div>

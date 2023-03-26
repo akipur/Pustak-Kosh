@@ -6,6 +6,7 @@ import Donor from './components/donor/Donor';
 import Login from './components/Login';
 import SignUp from './components/Signup';
 import Needy from './components/needy/Needy';
+import Learn from './components/Learn';
 
 function App() {
   return (
@@ -18,6 +19,7 @@ function App() {
         <Route path="/Needy" element={<Needy/>}/>
         <Route path="/Login" element={<Login/>}/>
         <Route path="/Signup" element={<SignUp/>}/>
+        <Route path="/Learn" element={<Learn/>}/>
         </Routes>
     </BrowserRouter> 
    
