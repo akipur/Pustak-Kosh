@@ -20,7 +20,7 @@ To run this service on your local **_Windows_** machine, please follow the set-u
 All of the set-up must be done in the same destination folder as where the repository exist.
 
 ### Installing Python:
-**Step 1:**  Check if python is already installed. To do so, open Command Prompt or Windows PowerShell type there "```python -V```".  
+**Step 1:**  Check if python is already installed. To do so, open Command Prompt or Windows PowerShell type there ```python -V```.  
 
 **Step 2:**  If python not installed, open the [Python Releases for Windows](https://www.python.org/downloads/windows/) page.  
 
@@ -33,18 +33,18 @@ All of the set-up must be done in the same destination folder as where the repos
 ### Installing Flask:
 **Step 1:**  Open the Command Prompt in Administrator Mode.  
 
-**Step 2:**  Run the command "```pip install flask```".  
+**Step 2:**  Run the command ```pip install flask```.  
 
-**Step 3:**  Run the command "```python```".  
+**Step 3:**  Run the command ```python```.  
 
-**Step 4:**  Run the command "```import flask```".
+**Step 4:**  Run the command ```import flask```.
 
 ### Installing Node.js and npm:
 **Step 1:**  Open the Command Prompt in Administrator Mode.  
 
 **Step 2:**  Ensure you are in the frontend folder.  
 
-**Step 3:**  Run the command "```npm install -g npm```".  
+**Step 3:**  Run the command ```npm install -g npm```.  
 
 ### Setting Up The Database:
 **Step 1:**  Set up a MySQL database following the given ER diagram.  
@@ -60,7 +60,7 @@ Ensure you are within backend folder of repository.
 ### Run Flask API: 
 **Step 1:**  Open the Command Prompt in Administrator Mode.  
 
-**Step 2:**  Run the command "```flask --app app run```".  
+**Step 2:**  Run the command ```flask --app app run```.  
 
 **Step 3:**  Copy and visit the http url.  
 
@@ -80,32 +80,32 @@ Ensure you are within frontend folder of repository.
 ### Available Scripts: 
 In terminal, run commands:
 
-```npm install```
-->install all the dependencies required to run the application
-->generates '```package.json```' to list all dependencies
-->Installs all the required packages and modules
--> essential step in setting up a new React project
+### ```npm install```  
+-> Install all the dependencies required to run the application.  
+-> Generates ```package.json``` to list all dependencies.  
+-> Installs all the required packages and modules.  
+-> Essential step in setting up a new React project.
 
-## ```npm start:```  
+### ```npm start```  
 -> Runs the app in the development mode.  
 -> Open ```http://localhost:3000``` to view it in the browser.  
 -> The page will reload if you make edits.  
 -> You will also see any lint errors in the console.  
 
-## ```npm test:``` 
+### ```npm test``` 
 -> Launches the test runner in the interactive watch mode.  
 -> See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.  
 
-## ```npm run build:```  
--> Builds the app for production to the build folder. 
+### ```npm run build```  
+-> Builds the app for production to the build folder.  
 -> It correctly bundles React in production mode and optimizes the build for the best performance.  
 -> The build is minified and the filenames include the hashes.  
 -> App is ready to be deployed.  
 -> See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.  
 
 
-## ```npm run eject:```  
--> This is a one-way operation. Once you eject, you can’t go back.
+### ```npm run eject```  
+-> This is a one-way operation. Once you eject, you can’t go back.  
 -> This command will remove the single build dependency from the project.  
 -> It will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) into the project to have full control over them.  
 -> All of the commands except eject will still work, but they will point to the copied scripts.  
