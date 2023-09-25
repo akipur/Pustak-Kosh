@@ -114,7 +114,7 @@ function home() {
                   <Card.Title className='fw-bold text-center' style={{ color: '#707BFB' }}>Community</Card.Title>
                   <Card.Text className='text-center'>
 
-                   Join our community with thousands of like minded people to share ideas. 
+                    Join our community with thousands of like minded people to share ideas. 
                   </Card.Text>
                   
                 </Card.Body>

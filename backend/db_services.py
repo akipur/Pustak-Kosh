@@ -210,7 +210,7 @@ def get_needy_info(book_id ) -> list:
     result = []
     for row in rows:
         request_object = Request(request_id = row[0], request_user_id = row[1], book_id = row[2],
-                                 queue_order = row[3], request_status = row[4])
+                                 queue_order = row[3])
         user_object = User(user_name = row[6])
         entry = (request_object.get_json() | user_object.get_json())
         result.append(entry)
